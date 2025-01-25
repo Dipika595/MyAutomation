@@ -42,7 +42,12 @@ async function readExcel(worksheet,searhText){
 
 test("Upload download excel validations",async({page})=>{
 
-    page.goto("https://rahulshettyacademy.com/upload-download-test/index.html");
-    
+    await page.goto("https://rahulshettyacademy.com/upload-download-test/index.html");
+    const downloadPromise=page.waitForEvent("download");
+    await page.getByRole('button',{name:'Download'}).click();
+    await downloadPromise;
+    writeExcelTest("Apple",350,{rowChange:0,colChange:2},"c://Users//User//OneDrive//Documents//ExcelDownloadTest.xlsx");
+    await page.locator("#fileinput").click();
+    await page.locator("#fileinput").setInputFiles("c://Users//User//OneDrive//Documents//ExcelDownloadTest.xlsx")
 
 })
