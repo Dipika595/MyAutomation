@@ -18,7 +18,7 @@ test.beforeAll( async() => {
        
 })
 
-test.skip("Client login", async ({page}) => {
+test("Client login", async ({page}) => {
 
     page.addInitScript(value=>{
         window.localStorage.setItem("token",value)

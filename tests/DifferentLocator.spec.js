@@ -1,7 +1,7 @@
 const {test,expect} =require("@playwright/test");
 const exp=require("constants");
 
-test.skip("Playwright special locators", async ({page}) => {
+test("@Web Playwright special locators", async ({page}) => {
 
     await page.goto("https://rahulshettyacademy.com/angularpractice/")
     await page.getByLabel("Check me out if you Love IceCreams!").click()

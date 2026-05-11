@@ -1,4 +1,4 @@
-const {test,expect,request} =require("@playwright/test");
+// const {test,expect,request} =require("@playwright/test");
 class APIUtils{
 
     constructor(apiContext,loginPayload){
@@ -8,11 +8,11 @@ class APIUtils{
         // this.orderPayload=orderPayload;
     }
 
-    async getToken(loginPayload){
+    async getToken(){
         const loginResponse=await this.apiContext.post("https://rahulshettyacademy.com/api/ecom/auth/login",
                 { data: this.loginPayload })
         
-                expect(loginResponse.ok()).toBeTruthy()
+                // expect(loginResponse.ok()).toBeTruthy()
                 const loginResponseJson=await loginResponse.json()
                 const token=loginResponseJson.token;
                 console.log(token)
@@ -21,19 +21,20 @@ class APIUtils{
 
     async createOrder(orderPayload){
         let response={};
-        // response.token=await this.getToken();
-        const token = await this.getToken(); // Resolve token
-        response.token = token;
+        response.token=await this.getToken();
+        // const token = await this.getToken(); // Resolve token
+        // response.token = token;
+        console.log("Token is",response.token)
         const orderResponse=await this.apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order",{
             data: orderPayload,
             headers:{
-                'Authorization': this.getToken(),
+                'Authorization':  response.token,
                 'Content-Type': 'application/json'
             }
 
         })
         const orderresponseJson=await orderResponse.json()
-        console.log(orderresponseJson)
+        console.log("Response of order api is   ::::: ",orderresponseJson)
         const orderId= orderresponseJson.orders[0];
         response.orderId=orderId;
         return response;

@@ -1,7 +1,9 @@
 const { test, expect } = require("@playwright/test");
 const exp = require("constants");
 
-test.skip("Pop up validations", async ({ page }) => {
+// test.describe.configure({mode:'parallel'})
+test.describe.configure({mode:'serial'})
+test("Pop up validations", async ({ page }) => {
 
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/")
     // await page.goto("http://google.com")
@@ -33,7 +35,7 @@ test("Screenshot & visual comparision", async ({ page }) => {
 
 })
 
-test.only("Visual", async ({ page }) => {
+test("Visual", async ({ page }) => {
     // await page.goto("https://www.rediff.com/")
     // await page.goto("https://www.flightaware.com/")
     await page.goto("https://google.com/")

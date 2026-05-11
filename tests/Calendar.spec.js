@@ -1,6 +1,6 @@
 const {test,expect} =require("@playwright/test");
 
-test.skip("Calendar validations",async({page})=>{
+test("@Web Calendar validations",async({page})=>{
 
     const monthNumber="6";
     const date="15";

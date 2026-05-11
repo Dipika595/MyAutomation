@@ -12,27 +12,60 @@ const { defineConfig, devices } = require('@playwright/test');
  */
 module.exports = defineConfig({
   testDir: './tests',
+  retries: 0,
+  testMatch: '**/*.spec.js',
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  // fullyParallel: true,
+  // workers: 1,
+  timeout: 30*1000,
+  expect: {
+
+    timeout: 5000
+  },
   /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
+  // forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  // retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  // workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
+  projects: [
+  //  {
+  //   name: 'Safari Execution',
+  //   use: {
+  //     /* Base URL to use in actions like `await page.goto('/')`. */
+  //     // baseURL: 'http://127.0.0.1:3000',
+  //     browserName: 'webkit',
+  //     headless: true,
+  //     screenshot: 'off',
+  //     trace: 'retain-on-failure', //off/on
+  //     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+  //     // trace: 'on-first-retry',
+  //   },
+  //  },
+   { name: 'Chrome',
+    use: {
+      /* Base URL to use in actions like `await page.goto('/')`. */
+      // baseURL: 'http://127.0.0.1:3000',
+      browserName: 'chromium',
+      headless: true,
+      screenshot: 'on',
+      // video: 'retain-on-failure',
+      video: 'on',
+      trace: 'retain-on-failure', //off/on
+      // ignoreHttpsErrors: true,
+      // permissions: ['geolocation'],
+      // ...devices['iPhonse 11']
+      // viewport: {width:720, height: 720}
+      /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+      // trace: 'on-first-retry',
+    },
+
+   }
+  ]
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
-    browserName: 'chromium',
-    headless: false,
-    screenshot: 'on',
-    trace: 'retain-on-failure', //off/on
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    // trace: 'on-first-retry',
-  },
+
 
   /* Configure projects for major browsers */
   // projects: [

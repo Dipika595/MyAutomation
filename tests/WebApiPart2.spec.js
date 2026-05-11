@@ -1,10 +1,10 @@
 const {test,expect,request} =require("@playwright/test");
 // const exp=require("constants");
 const {APIUtils}=require("./Utils/APIUtils")
-let token;
+// let token;
 
 const loginPayload = { userEmail: "avantika@gmail.com", userPassword: "Shinchan@1234" }
-const orderPayload= {orders:[{country:"India",productOrderedId:"6581cade9fd99c85e8ee7ff5"}]}
+const orderPayload= {orders:[{country:"India",productOrderedId:"67a8df56c0d3e6622a297ccd"}]}
 // let orderId;
 let response
 let apiContext
@@ -43,6 +43,8 @@ test("Place the order", async ({page}) => {
     page.addInitScript(value=>{
         window.localStorage.setItem("token",value)
     }, response.token);
+
+    console.log("Inside script token value::::",response.tokken);
     const email="avantika@gmail.com";
     // const email="";
     const productName='IPHONE 13 PRO';

@@ -3,15 +3,24 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "regression": "npx playwright test --headed",
+    "webTests": "npx playwright test --grep @Web",
+    "CucuberRegression": "npx cucumber-js features/Ecommerce.feature --retry 1 --exit --format html:cucumber-report.html"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.49.1",
-    "@types/node": "^22.10.2"
+    "@azure/identity": "^4.13.1",
+    "@azure/playwright": "^1.1.5",
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^22.10.2",
+    "allure-playwright": "^3.1.0",
+    "typescript": "^5.7.3"
   },
   "dependencies": {
+    "@cucumber/cucumber": "^11.2.0",
     "exceljs": "^4.4.0"
   }
 }

@@ -41,13 +41,18 @@ async function readExcel(worksheet,searhText){
 // writeExcelTest("Apple",350,{rowChange:0,colChange:2},"c://Users//User//OneDrive//Documents//ExcelDownloadTest.xlsx");
 
 test("Upload download excel validations",async({page})=>{
-
+    const textSearch="Apple"
+    const updateValue="350";
     await page.goto("https://rahulshettyacademy.com/upload-download-test/index.html");
     const downloadPromise=page.waitForEvent("download");
     await page.getByRole('button',{name:'Download'}).click();
     await downloadPromise;
-    writeExcelTest("Apple",350,{rowChange:0,colChange:2},"c://Users//User//OneDrive//Documents//ExcelDownloadTest.xlsx");
+    writeExcelTest(textSearch,updateValue,{rowChange:0,colChange:2},"c://Users//User//OneDrive//Documents//ExcelDownloadTest.xlsx");
     await page.locator("#fileinput").click();
     await page.locator("#fileinput").setInputFiles("c://Users//User//OneDrive//Documents//ExcelDownloadTest.xlsx")
 
+    const textLocator=page.getByText(textSearch);
+    const desiredRow=await page.getByRole('row').filter({has: textLocator})
+    await expect(desiredRow.locator("#cell-4-undefined")).toContainText(updateValue)
+    // await expect(desiredRow.locator("#cell-4-undefined")).toHaveValue(updateValue)
 })

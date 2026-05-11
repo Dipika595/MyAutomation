@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","3666","@Web Calendar validations","Safari Execution","Wed Feb 05 17:29:39 IST 2025","passed","Wed Feb 05 17:29:43 IST 2025","","Calendar.spec.js","",""
+"","2711","@Web Playwright special locators","Chrome","Wed Feb 05 17:29:39 IST 2025","passed","Wed Feb 05 17:29:42 IST 2025","","DifferentLocator.spec.js","",""
+"","3953","@Web Playwright special locators","Safari Execution","Wed Feb 05 17:29:39 IST 2025","passed","Wed Feb 05 17:29:43 IST 2025","","DifferentLocator.spec.js","",""
+"","2184","@Web Calendar validations","Chrome","Wed Feb 05 17:29:39 IST 2025","passed","Wed Feb 05 17:29:42 IST 2025","","Calendar.spec.js","",""
